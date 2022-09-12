@@ -1,0 +1,44 @@
+---
+# tasks file for bind
+- name: Install bind
+  ansible.builtin.package:
+      name: "{{ infra_bind_package }}"
+      state: present
+      update_cache: yes
+
+- name: Open firewall
+  ansible.builtin.firewalld:
+      service: dns
+      permanent: True
+      state: enabled
+      immediate: true
+  notify: restart firewalld
+
+- name: Generate a named.conf 
+  ansible.builtin.template:
+      src: named.conf.j2
+      dest: /etc/named.conf
+      owner: "{{ infra_bind_owner }}"
+      group: "{{ infra_bind_group }}"
+
+- name: Generate a forward zone
+  ansible.builtin.template:
+      src: zone_forward.j2
+      dest: "/var/named/forward.example.com"
+      owner: "{{ infra_bind_owner }}"
+      group: "{{ infra_bind_group }}"
+  loop: "{{ infra_bind_forward_zone }}"
+  notify: restart named 
+  tags:
+     - zonefile
+
+- name: Generate a reverse zone
+  ansible.builtin.template:
+      src: zone_reverse.j2
+      dest: "/var/named/reverse.example.com"
+      owner: "{{ infra_bind_owner }}"
+      group: "{{ infra_bind_group }}"
+  loop: "{{ infra_bind_reverse_zone }}"
+  notify: restart named 
+  tags:
+     - zonefile

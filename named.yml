@@ -1,0 +1,9 @@
+---
+- hosts: virtual_machines
+  become: True
+  gather_facts: True
+  tasks:
+    - ansible.builtin.include_role:
+         name: bind
+      tags:
+        - zonefile

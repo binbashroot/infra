@@ -1,0 +1,21 @@
+---
+# defaults file for bind
+infra_bind_daemon: named
+
+infra_bind_forward_zone: 
+- zone: forward.example.com 
+
+infra_bind_group: named
+
+infra_bind_owner: named
+
+infra_bind_port: 53
+
+infra_bind_package:
+  - bind
+  - bind-utils
+  - firewalld
+
+infra_bind_reverse_zone:
+  - zone: reverse.example.com
+

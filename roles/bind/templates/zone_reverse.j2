@@ -1,0 +1,21 @@
+$TTL 5m
+@      IN SOA  ns1.example.com. hostmaster.example.com. (
+    1263187356      ; serial
+    10800           ; refresh
+    3600            ; retry
+    604800          ; expire
+    38400)          ; ttl
+
+       NS     ns1.example.com.
+
+5       PTR   proxmox.example.com. 
+6       PTR   ns1.example.com. 
+100     PTR   ansible.example.com. 
+101     PTR   satellite.example.com. 
+102     PTR   servera.example.com. 
+103     PTR   serverb.example.com. 
+104     PTR   serverc.example.com. 
+105     PTR   serverd.example.com. 
+106     PTR   servere.example.com. 
+107     PTR   serverf.example.com. 
+

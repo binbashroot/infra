@@ -1,0 +1,15 @@
+---
+# handlers file for bind
+- name: restart named
+  ansible.builtin.systemd:
+      name: "{{ infra_bind_daemon }}"
+      state: restarted
+      enabled: yes
+  tags:
+    - zonefile
+
+- name: restart firewalld
+  ansible.builtin.systemd:
+      name: "{{ infra_firewalld_daemon }}"
+      state: restarted
+      enabled: yes

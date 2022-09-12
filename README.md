@@ -1,2 +1,3 @@
-# infra
-Infra collection for rsquared namespace
+# Ansible Collection - rsquared.infra
+
+Documentation for the collection.
