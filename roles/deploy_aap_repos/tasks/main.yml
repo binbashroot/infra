@@ -1,0 +1,9 @@
+---
+# tasks file for deploy_aap_repos
+- name: Enable a RHSM repository
+  community.general.rhsm_repository:
+     name: "{{ lookup('template','repo.j2')|trim }}"
+     state: enabled
+  when: 
+    - ansible_distribution|lower == 'redhat'
+    - ansible_distribution_major_version|int == 8 or ansible_distribution_major_version|int == 9

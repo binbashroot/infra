@@ -1,0 +1,5 @@
+{% if ansible_distribution_major_version|int == 9 %}
+ansible-automation-platform-2.2-for-rhel-9-x86_64-rpms
+{% elif ansible_distribution_major_version|int == 8 %}
+ansible-automation-platform-2.2-for-rhel-8-x86_64-rpms
+{% endif %}
